@@ -13,6 +13,7 @@ public class Main extends Thread{
     volatile static long lala2 =1000000;
     public static final Lock mutex = new ReentrantLock();
     private static int NUM_OF_THREADS = 10000;
+    private static int NUM_OF_THREADS2 = 000;
 
     public static long getLala() {
         return lala;
@@ -21,12 +22,12 @@ public class Main extends Thread{
     public static void main(String[] args) throws InterruptedException {
 
         RunnableDemo[] thread = new RunnableDemo[NUM_OF_THREADS];
-        RunnableGet[] thread2 = new RunnableGet[NUM_OF_THREADS];
+        RunnableGet[] thread2 = new RunnableGet[NUM_OF_THREADS2];
         for(int i=0; i<NUM_OF_THREADS; i++)
         {
             thread[i] = new RunnableDemo(i+"");
         }
-        for(int i=0; i<NUM_OF_THREADS; i++)
+        for(int i=0; i<NUM_OF_THREADS2; i++)
         {
             thread2[i] = new RunnableGet();
         }
@@ -36,7 +37,7 @@ public class Main extends Thread{
         {
             thread[i].start();
         }
-        for(int i=0; i<NUM_OF_THREADS; i++)
+        for(int i=0; i<NUM_OF_THREADS2; i++)
         {
             thread2[i].start();
         }
@@ -44,7 +45,7 @@ public class Main extends Thread{
         {
             thread[i].t.join();
         }
-        for(int i=0; i<NUM_OF_THREADS; i++)
+        for(int i=0; i<NUM_OF_THREADS2; i++)
         {
             thread2[i].t.join();
         }
